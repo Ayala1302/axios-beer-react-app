@@ -8,6 +8,7 @@ function BeerCard(props) {
             <h3>{props.name} <span>{props.first_brewed}</span></h3>
             <h4>{props.tagline}</h4>
             <p><span>{props.abv}</span>{props.description}</p>
+            <button onClick={() => props.handleClickBeer()}>Like</button>
         </li>
         
     )
