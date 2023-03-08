@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       isClicked: false,
       arrayOfBeer: [],
-      likedBeer: []
+      likedBeer: [],
     };
   }
 
@@ -24,8 +24,9 @@ class App extends Component {
 
   // Add a button that allows a user to "like" a beer
   handleClickBeer = (index) => {
-    this.setState({likedBeer: [...this.state.likedBeer.push(index)]})
-  }
+    this.setState({ likedBeer: [...this.state.likedBeer, this.state.arrayOfBeer[index]] });
+    console.log(this.state.likedBeer)
+  };
 
   // In your app.js component make an HTTP request with axios to: https://api.punkapi.com/v2/beers and set the data that comes back into an array in state.
   componentDidMount() {
@@ -44,16 +45,18 @@ class App extends Component {
               return (
                 <BeerCard
                   key={index}
+                  index={index}
                   name={beer.name}
                   image_url={beer.image_url}
                   tagline={beer.tagline}
                   description={beer.description}
                   first_brewed={beer.first_brewed}
                   abv={beer.abv}
+                  handleClickBeer={this.handleClickBeer}
                 />
-                );
-              })}
-              
+              );
+            })}
+
             <p>{this.state.isClicked ? "true" : "false"}</p>
           </ol>
         </header>
